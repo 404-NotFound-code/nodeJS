@@ -58,6 +58,7 @@
 // ******************************************************
 
 const express = require('express');
+const cors = require("cors");
 
 const userRouter = require("./routes/users.route")
 
@@ -67,6 +68,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.urlencoded({extended: true}));
+app.use(cors()); 
 
 app.use(userRouter);
 app.use(productRouter);
