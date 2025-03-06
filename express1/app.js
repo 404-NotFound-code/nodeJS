@@ -10,8 +10,6 @@ app.use("/api/user", userRouter);
 //     res.end();
 // })
 
-// // post, put, delete = see output using postman
-
 // app.post('/', (req, res)=>{
 //     res.send("I am a post request at home route");
 //     res.end();
