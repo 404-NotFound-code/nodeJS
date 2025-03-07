@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 3001;
 
-app.get("", (req, res)=>{
+app.get("/", (req, res)=>{
     const id = req.header('id')
     const fullName = req.header('fullName');
     

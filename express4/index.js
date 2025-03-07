@@ -14,7 +14,7 @@ app.get("/products/:title([a-zA-Z0-9]+)", (req, res)=>{
     res.send(`<h2>TITLE = ${req.params.title}</h2>`);
 })
 
-app.use("*", (req, res)=>{ // wildcard (not a valid route)
+app.use("*", (req, res)=>{ // * wildcard (not a valid route)
     res.status(404).send({
         message: 'not a valid route',
     })

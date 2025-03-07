@@ -77,6 +77,11 @@ app.get("/login", (req, res)=>{
 });
 
 
+app.get('/', (req, res)=>{
+    res.send("<h1>I am a get request at home route</h1>");
+    res.end();
+})
+
 app.use((req, res)=>{ // if route doesnot match
     res.send("<h1>404 ! Not Found</h1>");
     res.end();
