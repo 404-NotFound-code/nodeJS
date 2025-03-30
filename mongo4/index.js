@@ -1,4 +1,4 @@
-// Mongoose schema, model and read data
+// Comparison query operator
 const express = require('express');
 const app = express();
 const PORT = 5000;
@@ -16,6 +16,7 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     price: Number,
+    rating: Number,
     description: String,
     createdAt: {
         type: Date,
@@ -47,11 +48,13 @@ app.post('/products', async (req, res)=>{
         // get data from request body
         const title = req.body.title;
         const price = req.body.price;
+        const rating = req.body.rating;
         const description = req.body.description;
 
         const newProduct = new Product({
             title: title, // title or title = req.body.title
             price: price, // price
+            rating,
             description: description, // description 
         })
 
@@ -67,7 +70,26 @@ app.post('/products', async (req, res)=>{
 // GET
 app.get('/products', async (req, res)=>{
     try {
-        const products = await Product.find();
+        // const products = await Product.find({price: {$eq: 54000}}); // eq, ne, lt, lte, gt, gte, in, nin
+
+        // const products = await Product.find({price: {$nin: [1000, 21000, 54000]}}); // eq, ne, lt, lte, gt, gte, in, nin
+
+        const price = req.query.price;
+        // const products = await Product.find({price: {$gt: price}});
+
+        let products;
+        // let products;
+        // if(price){
+        //     products = await Product.find({price: {$gt: price}});
+        // } else{
+        //     products = await Product.find();
+        // }
+
+        if(true){
+            products = await Product.find({$or: [{price: {$gt: 50000}}, {rating: {$gte: 4}}]});
+        } else{
+            products = await Product.find();
+        }
         // const products = await Product.find().limit(2);
 
         if(products){
